@@ -1,0 +1,23 @@
+Remove duplicates from Sorted array
+Remove Duplicates from Sorted Array:
+For removing the duplicates to the sorted array we use two pointer approach.
+we take a variable and initialized by 1.
+we traverse the array from i=1(second element) then check the previous element of 1 we will check the condition current element of the array is not equal to its previous element. If the condition is true means current element is not equal to the previous element than we will assign current element to the array to the array element of index j by the and increment the j index. 
+We will repeat this process until all element of the array is completed.
+And return the index of the j to the ans.
+Input: nums = [1,1,2]
+Output: 2, nums = [1,2,_]
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int j=1;
+        int n=nums.size();
+        for(int i=1;i<n;i++){
+            if(nums[i]!=nums[i-1]){
+                nums[j]=nums[i];
+                j++;
+            }
+        }
+        return j;
+    }
+}; 
