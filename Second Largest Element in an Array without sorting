@@ -1,0 +1,34 @@
+Second Largest Element in an Array without sorting
+For finding the second largest element in the array. First we will find the largest element  then  we will find the second largest.
+We take 2 variable largest and second largest and initialized with minimum value (INT_MIN) in both element.
+then we traverse the array and check the condition current element of the array is greater than the largest element. If it is greater, before assigning the current element as largest element, first  
+  we will assign the largest value to the second largest variable. Then we assign the current element to the largest element.
+Now we will find the second largest element.
+For finding the second largest element we check the condition , current element of the array is greater then the second largest element and current element of the array is not equal to the largest element.
+If it is true the we make the current element as second largest element.
+We will repeat this process unit all the element of the array is completed.
+if there is not second largest element then return the and -1.
+Ex: arr=[1,9,5,3,32,4,7]
+second largest=9
+class Solution {
+  public:
+    // Function returns the second
+    // largest elements
+    int getSecondLargest(vector<int> &arr) {
+        // Code Here
+        int lar=INT_MIN;
+        int sec=INT_MIN;
+        for(int i=0;i<arr.size();i++){
+            if(arr[i]>lar){
+            sec=lar;        
+            lar=arr[i];
+            }
+            if(arr[i]>sec && arr[i]!=lar)
+            sec=arr[i];
+        }
+     if(sec==INT_MIN)
+     return -1;
+    else
+    return sec;
+    }
+};
