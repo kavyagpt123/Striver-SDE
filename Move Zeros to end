@@ -1,0 +1,25 @@
+Move Zeros to end
+Brute Force Approach:
+We create a array ,and traverse the given array and first push all non zero element , after pushing all non zero element then we push all remaining zero elements.
+
+Optimal Approach:
+We take count variable and initialized with 0.
+Traverse the array and  check the condition if the current element of the array is not zero then  swap the element of the array of count index to the current element of the array and increment the count index.
+
+Example 1:
+Input: nums = [0,1,0,3,12]
+Output: [1,3,12,0,0]
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int n=nums.size(); 
+        int count=0;
+        for(int i=0;i<n;i++){
+            if(nums[i]!=0){
+                swap(nums[count],nums[i]);
+                count++;
+            }
+        }    
+
+    }
+};
