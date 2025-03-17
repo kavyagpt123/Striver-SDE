@@ -1,0 +1,19 @@
+Largest Element in an Array
+For finding the largest element in the array. We take a variable largest and assign the minimum value (INT_MIN).
+Then we will traverse the array if current element of  the array is greater than the largest element .
+Then we will assign current element to the largest element .We will repeat this process until all the element of the array is completed.
+class Solution {
+  public:
+    int largest(vector<int> &arr) {
+        // code here
+       int n = arr.size();
+       int lar=INT_MIN;
+       for(int i=0;i<n;i++){
+           if(arr[i]>lar){
+           lar=arr[i];
+           }
+           
+       }
+       return lar;
+    }
+};
