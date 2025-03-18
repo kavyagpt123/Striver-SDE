@@ -1,0 +1,43 @@
+Max Consecutive Ones
+For finding the maximum Consecutive Ones. We take two variable count and maxCount and initialized it 0.
+We will traverse the array and and check the condition , current element of the array is one or not if it is one then increase the count value
+if it is not one then count will become 0. 
+After checking the condition we find the maximum of maxCount and Count and assign the maximum value to the maxCount.
+Return the maxCount to answer.
+
+C++ solution:
+class Solution {
+public:
+    int findMaxConsecutiveOnes(vector<int>& nums) {
+        int count=0;
+        int maxC=0;
+        int n=nums.size();
+        for(int i=0;i<n;i++){
+            if(nums[i]==1){
+            count++;
+            }
+            else{
+            count=0;
+            }
+            maxC=max(maxC,count);
+        }
+        return maxC;
+    }
+};
+
+Python Solution:
+class Solution:
+    def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
+        n=len(nums)
+        count=0
+        maxCount=0
+        for val in nums:
+            if(val==1):
+                count += 1
+            else:
+                count=0
+            maxCount=max(maxCount,count)
+        return maxCount
+
+
+
