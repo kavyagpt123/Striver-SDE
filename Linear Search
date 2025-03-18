@@ -1,0 +1,23 @@
+Linear Search
+Linear Search is a very simple method for finding any element.
+We take a  variable and initialized it False.
+We traverse the array and check the condition , current element of the array is equal to k or not if it is equal to k than we assign True
+and return the it
+class Solution {
+  public:
+    // Function to find element in sorted array
+    // arr: input array
+    // k: element to be searched
+    bool searchInSorted(vector<int>& arr, int k) {
+
+        // Your code here
+        int res=false;
+        for(int i=0;i<arr.size();i++){
+            if(arr[i]==k){
+                res=true;
+            }
+            
+        }
+        return res;
+    }
+};
