@@ -1,0 +1,31 @@
+Left Rotate an array by one place
+Given an integer array nums, rotate the array to the right by k steps, where k is non-negative.
+There is a 3 step method for rotating the array to the right by k steps.
+k%=n
+step 1- reverse the whole array.
+step 2- reverse the array from start to kth index.
+step 3- reverse the array from k+1 to the end of the array.
+This is a 3 steps method for rotating the array to the right by k steps.
+reverse(arr.begin(),arr.end());
+reverse(arr.begin(),arr.begin()+k);
+reverse(arr.begin()+k,arr.end());
+ 
+Reversing the array
+for reversing the array We take 2 variable left and right . left point to the first element of the array and right point to the last element of the array. traverse the array using while loop and until left index is smaller than the right index.
+Swap the left element to the right element and increment the left index and decrement the right index.
+
+Swapping the element
+5,4
+a=a+b,   b=a-b,  a=a-b
+
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+    
+        int n=nums.size();
+        k%=n;
+        reverse(nums.begin(),nums.end());
+        reverse(nums.begin(),nums.begin()+k);
+        reverse(nums.begin()+k,nums.end());
+    }
+};
