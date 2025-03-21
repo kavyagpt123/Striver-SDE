@@ -1,0 +1,102 @@
+Single Number
+Example 1:
+Input: nums = [2,2,1]
+Output: 1
+For solving this Problem we have 3 approach
+Approach 1- We use unordered_map data structure, map stores the element in the form of key and value .
+Our idea is that first we store all the element of the array into the map.
+Here map key pointing to the element of the array and value pointing to the frequency of that element.
+We check the frequency of the key.
+We traverse the map and check frequency of every element of the map if frequency is 1 return that element . Else return -1
+
+unordered_map<int,int>p;
+for(auto a: nums){
+p[a]++;
+for (auto b : p){
+     if( b.second == 1)
+     retuen b.first;
+return -1;
+ This approach takes o(n) extra space 
+
+Approach 2: In this approach first we sort the given array and traverse the array .
+check the condition if current element of the is equal to its one of adjacent or not.
+If is equal than move to the next element .
+If is not equal return the element.
+sort(nums.begin(),nums.end());
+for(int =1;i<nums.size();i++){
+if(nums[i-1]!=nums[i]){
+     return nums[i-1]
+return -1;
+
+Approach 3: In this approach we use XOR .
+XOR properties is that if the number is same  1-- A^A=0, 
+2- XOR is Commutative means A^B=B^A
+3- XOR of any number with zero is the number it self A^0=A
+We know every number is appears twice except a single number which appears only single time.
+
+See, we already discuss a thing a that xor of a same number with itself is zero, i.e A ^ A = 0
+Now, we will look some more property of xor-
+
+1) xor of a same number with itself is zero, i.e A ^ A = 0
+2) xor is commutative that means a ^ b = b ^ a.
+3) xor of any number with zero is the number itself i.e A ^ 0 = A.
+
+Suppose our array is arr[]: [5, 1, 3, 1, 3, 4, 5, 7, 4]
+we will rearrange the array, and take all the numbers together, then our array looks like
+                     arr[]: [1, 1, 3, 3, 4, 4, 5, 5, 7]
+					 now, take xor of all numbers -
+					 1 ^ 1 ^ 3 ^ 3 ^ 4 ^ 4 ^ 5 ^ 5 ^ 7   (rearrange the array)
+					   0   ^   0   ^   0   ^   0   ^ 7   (see point number 1)
+					               7                     (see point number 3) 
+We already know a property of xor, that says we don't need to rearrange the array.
+So, our array is arr[]: [5, 1, 3, 1, 3, 4, 5, 7, 4] 
+
+[5, 1, 3, 1, 3, 4, 5, 7, 4]
+ ↑  ↑
+ 5 ^ 1 = 4
+ 
+[5, 1, 3, 1, 3, 4, 5, 7, 4]
+       ↑                       
+	   4 ^ 3 = 7 (prev answer xor current index)
+	   
+[5, 1, 3, 1, 3, 4, 5, 7, 4]
+	      ↑
+		  7 ^ 1 = 6 (prev answer xor current index)
+		  
+[5, 1, 3, 1, 3, 4, 5, 7, 4]
+             ↑
+			 6 ^ 3 = 5 (prev answer xor current index)
+
+[5, 1, 3, 1, 3, 4, 5, 7, 4]
+                ↑
+				5 ^ 4 = 1  (prev answer xor current index)
+				
+[5, 1, 3, 1, 3, 4, 5, 7, 4]
+                   ↑
+				   1 ^ 5 = 4 (prev answer xor current index)
+				   
+[5, 1, 3, 1, 3, 4, 5, 7, 4]
+                      ↑
+					  4 ^ 7 = 3 (prev answer xor current index)
+					  
+[5, 1, 3, 1, 3, 4, 5, 7, 4]
+                         ↑
+						 3 ^ 4 = 7 (prev answer xor current index)
+						 
+So, the element which we got as left should be our answer, so the answer is '7'
+
+We traverse the array and find the XOR or current element with current next element. After traversing 
+the array if there is a single element in the array. Last element of the array is the single element
+after finding the XOR of the array's elements . Then we return the last element of the array.
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        int n=nums.size();
+        for(int i=0;i<n-1;i++){
+            nums[i+1]= nums[i] ^ nums[i+1];
+
+        }
+        return nums[n-1];
+        
+    }
+};
