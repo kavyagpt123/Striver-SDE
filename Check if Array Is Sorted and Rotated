@@ -1,0 +1,27 @@
+Check if Array Is Sorted and Rotated
+Check if Array Is Sorted and Rotated
+For checking array is sorted and rotated or not .We take a variable count and initialized it by 0.
+We traverse the array from i=1 and check the condition ,current element of the array is less its previous element or not .If this condition is true then we increase the count value by one.
+After traversing the array we check the condition ,last element of the array is greater than first element of the array or not . If it is true then we increase the count value . 
+If count value is less than or equal to 1 or not . if it is true than return true.
+Input: nums = [3,4,5,1,2]
+Output: true
+Explanation: [1,2,3,4,5] is the original sorted array.
+You can rotate the array by x = 3 positions to begin on the element of value 3: [3,4,5,1,2].
+
+class Solution {
+public:
+    bool check(vector<int>& nums) {
+        int n=nums.size();
+        int count =0;
+        for(int i=1;i<n;i++){
+            if(nums[i-1]>nums[i]){
+                count++;
+            }
+        }
+            if(nums[n-1]>nums[0]){
+                count++;
+            }
+        return count<=1;
+    }
+};
