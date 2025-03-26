@@ -1,0 +1,46 @@
+2Sum Problem : This problem says that find the two element in the array whose sum is equal to target  and need to return their indices.
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+
+1-Brute Force approach:   In brute force approach , For finding the pair of element whose sum is equal to target we have to use 2 loop.
+   Outer loop runs first element to second last element and inner loop run leftmost second element to last element of the array.
+   For every iteration we check the sum of inner loop current element and outer loop current element if their sum is equal to target we return their indices. 
+This approach has a time complexity o(n^2).
+so we use another approach to reduce the time complexity
+
+2- Using Hashing :
+ We use hash table (Unordered_map) it will store the element as key and index as value.
+we will traverse the and for each element we check target-current element is exits in the hash map  or not. 
+if it exits in the map table then return the solution as index of current element and map element value .
+if it is not exits then add the current element to the hash table and its index as value.
+Repeat this steps until we find the solution or reach the end of the array.
+if it is not exits then return an empty array.
+time complexity of this approach is o(n).
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+         map<int,int>mp;
+         int n=nums.size();
+         for(int i=0;i<n;i++){
+            int a=nums[i];
+            int rem=target-a;
+            if(mp.find(rem)!=mp.end()){
+                return {mp[rem],i};
+            }
+            mp[a]=i;
+         }
+         return{-1,-1};
+    }
+};
+
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        d1={}
+        for i in range(len(nums)):
+            a=target-nums[i]
+            if(a in d1):
+                return [d1[a],i]
+            d1[nums[i]]=i
+        return []
+        
