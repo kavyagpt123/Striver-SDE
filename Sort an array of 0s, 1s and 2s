@@ -1,0 +1,46 @@
+Sort an array of 0s, 1s and 2s
+Sort an array of 0s,1s,2s
+Example 1:
+Input: nums = [2,0,2,1,1,0]
+Output: [0,0,1,1,2,2]
+Approach 1- This approach is not good .In this First approach we perform sorting in the array. After Sorting the array all elements will arrange in increasing order. 
+Time complexity: o(n*log n)
+
+Approach 2-  In the second approach we use 3 count variable and initialized them by zero .first counter1 count the number of zeros second counter2 count the number of ones and thir3d counter count the number of twos.
+First time we run a loop  from 0 to counter1 and replace the array element by 0.
+second loop will run from counter1 to counter1+counter2 and replace the array element by 1.
+Third loop will run from counter1+counter2 to size of the array and replace the array element by 2.
+Time Complexity: o(n)+o(n)
+
+Approach 3- Optimal Approach
+In This approach we will take 3 pointer left, mid and right.
+left and mid pointing to left most element of the  array and left pointer maintaining the 0's and mid pointer maintaining the 1's.
+high pointer pointing to the right most element of the array and it maintain the 2's.
+we run a loop that will continue until mid<=high.
+here we check the mid value ---
+1) if arr[mid]==0 we swap the arr[low] to arr[mid] and increase the left and mid index. Now sub array from index 0 to low-1 contains 0's.
+2) if arr[mid]==1 we increase the mid pointer and index mid-1 will pointing to 1's.
+3) if arr[mid]==2 we swap the arr[mid] to arr[high] and decrease the high pointer. and now inderx high+1 to n-1contains 2's.
+
+we will check the value of mid again and again until mid<=high.
+
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+       int low=0,mid=0,high=nums.size()-1;
+       while(mid<=high){
+        if(nums[mid]==0){
+            swap(nums[low],nums[mid]);
+            low++;
+            mid++;
+        }
+        else if(nums[mid]==1){
+            mid++;
+        }
+        else{
+            swap(nums[mid],nums[high]);
+            high--;
+        }
+       }
+    }
+};
