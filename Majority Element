@@ -1,0 +1,29 @@
+Majority Element
+Approach1-Better Approach-Naive Approach
+We will use 2 loops.
+First loop will run and that loop  select element one by one.
+For every element of the first loop, Second loop will count the occurrence.
+If any element occurs more that  n/2 times , we will return that element.
+
+Approach2--Using Map table , Hash map stores as key and value pairs. Where key will  be the element of the array and value will be the frequency of that element .
+We traverse the array and update the value of key and also check the occurrence of the key is greater that n/2. or not.
+If It is greater than n/2 return the key.
+else iterate the next.
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        unordered_map<int,int>mp;
+        int n=nums.size();
+        for(auto a:nums){
+            mp[a]++;
+        }
+        int ans;
+        for(auto i:mp){
+            if(i.second>(n/2)){
+           ans=i.first;
+           break;
+            }
+        }
+        return ans;
+    }
+};
