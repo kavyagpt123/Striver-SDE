@@ -1,0 +1,33 @@
+	Kadane's Algorithm, maximum subarray sum
+Maximum Subarray Sum (Kadane's Algorithm):
+1-Better Approach:
+In the better approach we will use 2 loop 
+we take 2 variable sum and maxsum. Sum initialized with 0 and maxsum initialized with INT_MAX.
+First loop will run and select every possible staring index of the subarray and starting index can be o to n-1.
+Inside of first loop we will  run another loop it will specify the ending index and current element. it will run 1 to n-1
+Inside of second loop we will add the current element arr[j]  to the sum of staring subarray sum=sum+arr[j].
+Then We will take  the maximum sum as answer.
+2-Optimal Approach
+In the Optimal approach we will run only one loop we will take 2 variable sum and maxsum. sum initialized with 0 and maxsum initialized with INT_MAX.
+we will run the loop and add current element of the array to the sum .
+Then we will check the condition (sum>maxsum) sum is greater than maxsum or not if it is greater that maxsum then we will assign the sum value to the maxsum.
+at any point if sum is negative or less than 0 then we will set the sum as 0.
+And return the maxsum as ans.
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int maxi=INT_MIN;
+        int sum=0;
+        int n=nums.size();
+        for(int i=0;i<n;i++){
+            sum+=nums[i];
+            if(sum>maxi){
+                maxi=sum;
+            }
+            if(sum<0){
+                sum=0;
+            }
+        }
+        return maxi;
+    }
+};
