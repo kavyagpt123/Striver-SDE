@@ -1,0 +1,38 @@
+Print subarray with maximum subarray sum (extended version of above problem)
+Max Score from Subarray Mins:
+Finding the maximum score from the giving subarray. Maximum Score means our goal to find the subarray  of elements whose sum of first smallest and second smallest is greater. 
+We take two variable sum and maxsum sum is initialized to 0 and maxsum is pointing to the first element of the array.
+we traverse the array from 0 to size of array -1.
+we find the sum of current and current next element . and  update the sum . 
+Then we check the condition if sum is greater than the maxsum then we update the maxsum with sum.
+Continue this process until all the element of the array is completed.
+
+C++ Solution:
+class Solution {
+  public:
+    // Function to find pair with maximum sum
+    int pairWithMaxSum(vector<int> &arr) {
+        // Your code goes here
+       int n=arr.size();
+       int sum = 0;
+       int maxi=arr[0];
+       for(int i=0;i<n-1;i++){
+           sum=arr[i]+arr[i+1];
+           if(sum>maxi)
+           maxi=sum;
+       }
+        return maxi;
+    }
+};
+
+Python Solution:
+class Solution:
+    def pairWithMaxSum(self, arr):
+        # Your code goes here
+        sum=0
+        maxi=arr[0]
+        for i in range(0,len(arr)-1):
+            sum=arr[i]+arr[i+1]
+            if(sum>maxi):
+                maxi=sum
+        return maxi
