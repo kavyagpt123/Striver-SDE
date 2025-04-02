@@ -1,0 +1,46 @@
+Stock Buy and Sell
+Stock Buy And Sell:
+Approach 1:
+In this approach ,simply  we will use 2 loop. and check every transaction to maintain the maxProfit . Our goal to find the max Profit among all transaction.
+step1: Use a for loop from i 0 to n.
+Step2: Run Another loop inside the first loop from i+1 to n.
+step3: Check the condition if arr[j]>arr[i] if true then we find  difference of arr[j]-arr[i] and compare to the maxprofit if  difference is greater than update the maxprofit.
+Step4: return maxprofit
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+    int maxProfit=0;
+    for(int i=0;i<prices.size();i++){
+    for(int j=i+1;j<prices.size()-1;j++){
+     if(prices[j]>prices[i]) maxProfit=max(maxProfit,prices[j]-prices[i]);
+   }
+   }
+   return maxProfit;
+   }
+}
+ 
+Approach 2:
+In this approach we simply run only 1 loop. 
+We will traverse the array and  we will maintain the minimum for buying form the start of the array and compare it with every element of the array. if it greater that the minimum element than take the difference and maintain it in max. otherwise update the minimum.
+ Step1- create two variable maxProfit and store it 0 and second variable miniBuy store array first value arr[0].
+step2- Run the for loop from  second element of the array to the last element of the array.
+step3- Update the minBuy if it is greater than the current element of the array.
+step4- Find the difference of the minBuy and current element of the array and compare it with maxProfit. 
+step5- Return maxProfit.
+
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int maxprofit=0;
+        int buy=prices[0];
+        for(int i=1;i<prices.size();i++){
+            if(prices[i]<buy){
+                buy=prices[i];
+            }
+            else if(prices[i]-buy>maxprofit){
+                maxprofit=prices[i]-buy;
+            }
+        }
+        return maxprofit;  
+    }
+};
