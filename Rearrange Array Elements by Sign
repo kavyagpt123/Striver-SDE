@@ -1,0 +1,71 @@
+Rearrange Array Elements by Sign
+Rearrange Array Elements by Sign:
+Broute Fouce Approach:
+step1- In this approach we simply take 2 array pos and neg . we traverse the array  if the cuurent element is positive then put it into pos array.  If the current element is negative than put it into neg array.
+step2- After finding the positive and negative element we  start putting them back into given array.
+step3- Since array must begin with positive number and start with 0 index, so all positive number would be placed in even index 2*i index. 
+             and all negative element would be placed in odd index 2*i+1 . Where i is the index of positive and negative index simuntenously.
+Step3- This approach will take o(n+n/2) time complexity. 
+ 
+class Solution {
+public:
+    vector<int> rearrangeArray(vector<int>& nums) {
+               vector<int>pos;
+               vector<int>neg;
+               int n=nums.size()
+         for(int i=0;i<n;i++){
+               if(nums[i]>=0):
+                 pos.push_back(nums[i]);
+               else
+                 neg.push_back(nums[i]);
+   }
+       for(int i=0;i<n/2;i++){
+               nums[2*i]=pos[i];
+               nums[2*i+1]=neg[i];
+    }
+  return nums;
+}
+}
+
+Optimal Approach:  In This Approach We will simply traverse the array only one time try to arrange the array element in correct order.
+Step1-   we take a result array. We know that array start from positive index . So we take 2 variable posIndex and negIndex posIndex initialized with 0 and negIndex initialized with 1.
+Step2- We traverse the array and check if the array element is positive or negative if it is positive then push it into 0 index of result array. increase the posIndex by 2.
+Step3- Similarly if the array element is negative then push it into negIndex  1 and increase the negative index by 2.
+step 4- When we see that postive and negative index exceed the size of array .Then whole result array will be arrange in correct order.
+class Solution {
+public:
+    vector<int> rearrangeArray(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> ans(n);
+        int posIndex=0;
+        int negIndex=1;
+        for(auto i:nums){
+            if(i>=0){
+                ans[posIndex]=i;
+                posIndex+=2;
+            }
+            else{
+                ans[negIndex]=i;
+                negIndex+=2;
+            }
+        }
+        return ans;
+    }
+};
+
+Python Solution:
+class Solution:
+    def rearrangeArray(self, nums: List[int]) -> List[int]:
+        n=len(nums)
+        p=[0]*len(nums)
+        posIndex=0
+        negIndex=1
+        for i in nums:
+            if(i>=0):
+                p[posIndex]=i
+                posIndex += 2
+            else:
+                p[negIndex]=i
+                negIndex += 2
+        return p
+        
