@@ -1,0 +1,22 @@
+Largest Odd Number in String:
+Input: num = "52"
+Output: "5"
+
+For finding the largest Odd Number in String we run  the loop from the last number of the string and check the last number of the string  is even or odd if it is odd then preserve the index of the number. and return the substring from 0 to index of that number+1.
+if there is no odd number is find then return empty string.
+class Solution {
+public:
+    string largestOddNumber(string num) {
+        int n=num.size();
+        int ind=-1;
+        string ans="";
+        for(int i=n-1;i>=0;i--){
+            if(num[i]%2!=0){
+               ind=i;
+               break;
+            }
+        }
+        if(ind==-1) return ans;
+        return (ans=num.substr(0,ind+1)); 
+    }
+};
