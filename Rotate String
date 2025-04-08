@@ -1,0 +1,21 @@
+Rotate String:
+for checking the given goal string is present in the given string s after some rotation on s string
+1: first check the length of the string s is equal to the length of the goal string .If is not equal then return false.
+2: if length of both string is equal then check the goal string is present in string s.
+     For checking , concatenate the string s with itself and find the substring .
+     Example: "abcde"+"abcde"="abcdeabcde"
+3: check if goal is substring 
+     if goal is exist in the concatenate string then it is a valid rotation of the string s.
+there is a method to find rotation 
+  rotate(s.begin(),s.begin()+1,s.end())
+  check s==goal
+
+Time Complexity: o(n)
+Space Complexity: o(n)
+class Solution {
+public:
+    bool rotateString(string s, string goal) {
+       if(s.length()!=goal.length()) return false;
+        return (s+s).find(goal)!=string :: npos;
+    }
+};
