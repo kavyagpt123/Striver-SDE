@@ -1,0 +1,11 @@
+Maximum depth of parentheses
+For finding maximum depth of parentheses we check the opening brackets.
+ex:
+Input: s = "(1+(2*3)+((8)/4))+1"
+we take 2 variable first for result and second for count the current char is opening "(" bracket or not.
+Initialized
+res=0 , count=0
+1: first we check every char of string s if it is open bracket   '('  increase the count and update the result with maximum count
+res=max(res,count)
+2: If the current character is closing bracket ')' then we decrease the count .
+and return the result 
