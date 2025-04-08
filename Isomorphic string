@@ -1,0 +1,40 @@
+two string are isomorphic  if the letter of the first string s map to second string letter t  and second string letter map to first string letter s then previously s should not map to other letter with the second string and t also should not map to other letter of the first string.
+
+We considered 2 hash map, one mapping  s  to  t   and other mapping  t  to  s . first we check   s[i]  is present in map1  if present then check 
+previously it was mapped with  same  t[i] or not if not return false.
+
+if it s[i]  was not  previously mapped then map it to t[i].
+ and do the same mapping map2 t[i] to s[i].
+example1    s = 'egg'
+                     t = 'add'
+                         s->t     e->a       g->d           and    a->e      d->g      valid mapping
+example2   s='egg'    t='adh'
+                    s->t       e->a      g->d    g->h     not valid
+Python:
+We take 2 dict index_s and index_t as empty dict.
+we run a loop from 0 to length of the string.
+we check the condition if letter of the first string s is not in the index_s dict then we insert the this leteer as key and its index as value in the index_s dict.
+same as check the condition for second string t 
+after that we check the condition if index of the first string letters is not equal to index of the second string letters then return false.
+if this condition if false then return true.
+class Solution {
+public:
+    string findmapping(string s){
+        unordered_map<char,char>mp;
+        string a = "";
+        char ch='a';
+        for(auto x:s){
+            if(mp.find(x)==mp.end()){
+                mp[x]=ch;
+                ch++;
+            }
+            a.push_back(mp[x]);
+        }
+        return a;
+    }
+    bool isIsomorphic(string s, string t) {
+      string str1=findmapping(s);
+      string str2=findmapping(t);
+      return str1==str2;
+    }
+};
