@@ -1,0 +1,19 @@
+Reverse Words in a string:
+First We remove all whitespace of the given string in python there is split() function in str for removing all whitespaces.
+Then we take 2 pointer start and end start is initialized with index of first character of the string and end is initialized with last character of the given string.
+we traverse a loop until start < end.
+Then we swap start and end.
+increase the start pointer and decrease the end pointer.
+after that we join the reverse string by a space
+return it.
+class Solution:
+    def reverseWords(self, s: str) -> str:
+       words=s.split()
+       start=0
+       end=len(words)-1
+       while start<end:
+        words[start],words[end]=words[end],words[start]
+        start+=1
+        end-=1
+
+       return " ".join(words)
