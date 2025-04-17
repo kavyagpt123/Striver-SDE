@@ -1,0 +1,25 @@
+Reverse linked list:
+Approach 1 Brute force- In this approach we use a stack data structure and push the every node to the stack.
+when whole list is push in the stack .
+we effectively reverse the order of the list. We rebuild the list by popping the top of nodes from the stack ans assigning them to the nodes.
+Optimal Approach:
+In this approach we will take 3 pointer curr, prev and next_node pointer. curr pointer initilalized with head and prev point to NULL.
+We traverse the list until curr is not null. next pointer point to the curr next .
+we will swap the links curr next point to prev. prev will become curr and curr move to next pointer which is next_node
+And return prev.
+class Solution {
+public:
+    
+    ListNode* reverseList(ListNode* head) {
+        ListNode* pre=NULL;
+        ListNode* curr=head;
+       
+        while(curr!=NULL){
+           ListNode* nxt=curr->next;
+            curr->next=pre;
+            pre=curr;
+            curr=nxt;
+        }
+        return ;
+    }
+};
