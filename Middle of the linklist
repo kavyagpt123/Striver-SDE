@@ -1,0 +1,17 @@
+Middle of the linklist:
+For finding the middle of the list we will take two pointer slow and fast both are pointing to the head of the list. Slow pointer moves only one step and fast pointer moves two steps.
+We run a loop until fast and fast->next is exits.
+move the slow and fast pointer. 
+when whole list will traverse . slow pointer is pointing to the middle of the list. return slow pointer.
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        ListNode* slow=head;
+        ListNode* fast=head;
+        while(fast!=NULL && fast->next!=NULL){
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        return slow;
+    }
+};
