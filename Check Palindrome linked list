@@ -1,0 +1,49 @@
+Check Linked List Palindrome or not:
+1- Brute Force Approach--In this approach we a stack data structure. We store all node in the stack in along with its value. When all node store in the stack. We traverse the linked list again and compare each node values with  popped from top of the stack values.
+Step1- Take a Empty stack. temporary stores the nodes in the stack.
+Step2- Traverse the linked list using temporary variable until temp is not NULL and push temp value for each node  onto the stack.
+Step3- After Pushing all node values. Set temp variable to the head of the linked list. While stack is not empty Compare temp value to the top of stack value. Pop the stack top value and move to the temp next node till reached to the end.
+Step4-During the comparison If any point value does not match then linked list is not palindrome return false.
+Step%- If all node value match to stack top values. It means Linked list Palindrome return true.
+TC- O(n)
+SC-O(N)
+
+2- Optimal Approach- In this approach we will not extra space. We avoided the reverse the half of the linked list. And compare both half halves . If both are match reversed that portion that are already reversed and return true otherwise return false.
+Step1- First we check linked list empty or there is only one node in the linked list. If it is then return true.
+Step2- We initialized 2 pointers slow and fast . In this approach we will use tortoise and hare algorithm for finding the middle node of the linked list. The slow pointer run only one step and fast pointer run 2 steps till fast and fast next pointer is not NULL or second last of the linked list. Now slow pointer point to the middle of the linked list.
+Step2- Reverse the Linked list after the slow next element Means reverse the second halve. This is done by the calling the reverse function and returning the head of the reversed second halve.
+Step3- Take 2 pointer temp1 and temp2 temp 1 pointing to the head of the linked list and temp2 pointing the second points the new head of the reverse linked list.
+Step4- Compare both data values of the nodes of halves. If both does not  matching , it means linked list is not palindrome . return false. Other wise continue moving the next node and comparing till the end. And return true.
+Step5- After comparsion all the node . Reverse the second half back to its original states. and join both halves back to its original state. If both values are matching reverse the second half and return true. In the case does not match return false.
+
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        if(head->next==NULL) return true;
+        ListNode*slow=head;
+        ListNode*fast=head->next;
+        while(fast!=NULL && fast->next!=NULL){
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        ListNode* prev=NULL;
+        ListNode* curr=slow->next;
+  
+        ListNode* forward;
+        while(curr){
+            forward=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=forward;
+        }
+        ListNode* temp=head;
+        ListNode* temp1=prev;
+        while(temp1){
+            if(temp->val!=temp1->val)
+            return false;
+            temp1=temp1->next;
+            temp=temp->next;
+        }
+        return true;
+    }
+};
