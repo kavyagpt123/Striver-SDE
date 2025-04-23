@@ -1,0 +1,27 @@
+Linked List Cycle II:   if there is a cycle return starting node of the linked list:
+First we find there is cycle or not in the given linked list. 
+For finding the cycle in linked list we will take two pointer fast and slow slow will increase one step and fast will increase two steps.
+if both are pointing to the same node then there is a cycle in the linked list otherwise no cycle.
+When we will find there is a cycle then we will find the starting index of the linked list.
+We also check one case if there is only one node and two node means fast and fast next not exits in the linked list. in this case we will return NULL.
+Now we find the the starting index .
+after finding the cycle . fast will point to the head .
+then we will run a loop until fast is not equal to slow 
+now fast and slow both are increase only one step. 
+When both are pointing the same index this will be the starting point of the cycle. we simply return the slow pointer.
+class Solution:
+    def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        slow=head
+        fast=head
+        while(fast and fast.next):
+            slow=slow.next
+            fast=fast.next.next
+            if(slow==fast):
+                break
+        else: return None
+
+        fast=head
+        while(fast!=slow):
+            slow=slow.next
+            fast=fast.next
+        return slow
