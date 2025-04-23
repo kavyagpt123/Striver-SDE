@@ -1,0 +1,30 @@
+Length of loop in LL:
+For finding the length of the LL. First we find the loop is present or not if no loop then return length 0.
+When there is loop in the LL. After finding the loop .
+ We will take a counter variable for finding the length. We run a loop this loop will run until fast is not equal to slow . We increate the count value and increase the fast point only one step.  and return the count .
+class Solution {
+public:
+    int length(ListNode* slow, ListNode* fast){
+        int count=1;
+        fast=fast->next;
+        while(slow!=fast){
+            count++;
+            fast=fast->next;
+        }
+        return count;
+
+    }
+    int findLengthOfLoop(ListNode *head) {
+        ListNode* slow=head;
+        ListNode* fast=head;
+        
+        while(fast && fast->next){
+            slow=slow->next;
+            fast=fast->next->next;
+            if(slow==fast)
+            return length(slow,fast);
+            
+        }
+         return 0;
+    }
+};
