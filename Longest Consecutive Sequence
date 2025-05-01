@@ -1,0 +1,36 @@
+Longest Consecutive Sequence:
+Longest Consecutive Sequences:
+Brute Force Approach:
+In this approach we will simply use linear search.
+We will run loop and iterate through each element one by one.
+For every element x we will try to find x+1,x+2,x+3 so we will use the linear search.
+We will take count variable initialized with 1, and a take a longest  variable initialized by 1. if next element found we will increase the count value. and find the max of longest and count.
+
+Better approach:
+In this approach first we will sort the array. Here also we will use 2 variable count and longest. longest initialized with INT_MIN and count initialized with 1.
+We will run a loop for iterate through each element one by one.
+For each element we will check this element is the part of our sequence or not.
+We will check arr[i+1]==arr[i]+1 , if equal we will the count value. and put the max value of longest and count into the longest.
+else if arr[i+1]>=arr[i]+1 , we will will set the count 1.
+return the longest value.
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        if(nums.empty()) return 0;
+        if(nums.size()==1) return 1;
+        sort(nums.begin(),nums.end());
+        int n=nums.size();
+        int ans_max=INT_MIN;
+        int ans=1;
+        for(int i=0;i<n-1;i++){
+            if(nums[i+1]==nums[i]+1){
+                ans++;
+            }
+            else if(nums[i+1]>=nums[i]+1){
+                ans=1;
+            }
+            ans_max=max(ans_max,ans);
+        }
+        return ans_max;
+    }
+};
